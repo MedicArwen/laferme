@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Animal } from './models/animal.model';
+import { AnimalsService } from './services/animals.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  listeAnimaux:Animal[]=[]
   title = 'laferme';
+  constructor(private animauxService:AnimalsService)
+  {
+    this.listeAnimaux = this.animauxService.recupererListe();
+  }
 }
