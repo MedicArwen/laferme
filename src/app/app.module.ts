@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ShowAnimalComponent } from './views/show-animal/show-animal.component';
-
+import {HttpClientModule} from '@angular/common/http' // pour utiliser le web service
 @NgModule({
   declarations: [
     AppComponent,
@@ -12,7 +12,8 @@ import { ShowAnimalComponent } from './views/show-animal/show-animal.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule // pour utiliser le web service
   ],
   providers: [],
   bootstrap: [AppComponent]
