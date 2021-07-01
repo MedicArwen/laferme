@@ -6,9 +6,7 @@ import { Animal } from '../models/animal.model';
   providedIn: 'root'
 })
 export class AnimalsService {
-  private _listeAnimaux:Animal[]=[
-      new Animal('ezaezaee54484','vache'),
-    new Animal('dqzdkzdza5d5dza5','chevre')]
+  private _listeAnimaux:Animal[]=[]
     listChangedEvent: EventEmitter<Animal[]> = new EventEmitter();
   constructor() 
   {
@@ -25,6 +23,8 @@ export class AnimalsService {
    }
    createAnimal(pAnimal:Animal)
    {
+     console.log('createAnimal:'+pAnimal.race);
+     
      this._listeAnimaux.push(pAnimal)
      this.listChangedEvent.emit(this._listeAnimaux)
    }
@@ -40,7 +40,7 @@ export class AnimalsService {
 
 
 
-   
+
    recupererListe()
    {
      return this._listeAnimaux;

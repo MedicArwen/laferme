@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { DataAccessService } from './data-access.service';
 import { Animal } from './models/animal.model';
 import { AnimalsService } from './services/animals.service';
 
@@ -7,11 +8,29 @@ import { AnimalsService } from './services/animals.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   listeAnimaux:Animal[]=[]
   title = 'laferme';
-  constructor(private animauxService:AnimalsService)
+  constructor(private animauxService:AnimalsService,private dataAccess:DataAccessService)
   {
-    this.listeAnimaux = this.animauxService.recupererListe();
+    
+    this.dataAccess.fetchData();
+    
+  }
+  ngOnInit(): void {
+    console.log('ngOnInit');
+    
+   /* this.heroService.listChangedEvent.subscribe((pHeroList:Hero[])=>
+    {
+     this.dataService.saveData(pHeroList)
+      this.listHeroes = pHeroList;
+ 
+    });*/
+    this.animauxService.listChangedEvent.subscribe((animalListe:Animal[])=>
+    {
+      console.log('call back: change');
+      this.dataAccess.saveData(animalListe);
+      this.listeAnimaux = animalListe;
+    })
   }
 }

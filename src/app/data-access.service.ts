@@ -9,24 +9,21 @@ import { tap } from 'rxjs/operators';
 })
 export class DataAccessService {
 
-  constructor(private httpService:HttpClient,private animalService:AnimalsService)
-   { 
-     
-   }
-  saveData(pAnimal:Animal[])
+  constructor(private httpService: HttpClient, private animalService: AnimalsService)
   {
-      this.httpService
-        .put('https://heroacademy-72e10-default-rtdb.europe-west1.firebasedatabase.app/animals.json', pAnimal
-        )
-        .subscribe((res:any) => {console.log(res); });
   }
-  fetchData()
-  {
-this.httpService.get<Animal[]>('https://heroacademy-72e10-default-rtdb.europe-west1.firebasedatabase.app/animals.json')
-    .pipe(tap((animalList: Animal[]) => {
-        if (animalList!=null)
-      	this.animalService.setListe(animalList);
-      }) ) .subscribe();
- }
+  saveData(pAnimal: Animal[]) {
+    this.httpService
+      .put('https://heroacademy-72e10-default-rtdb.europe-west1.firebasedatabase.app/animals.json', pAnimal
+      )
+      .subscribe((res: any) => { console.log(res); });
+  }
+  fetchData() {
+    this.httpService.get<Animal[]>('https://heroacademy-72e10-default-rtdb.europe-west1.firebasedatabase.app/animals.json')
+      .pipe(tap((animalList: Animal[]) => {
+        if (animalList != null)
+          this.animalService.setListe(animalList);
+      })).subscribe();
+  }
 
 }
